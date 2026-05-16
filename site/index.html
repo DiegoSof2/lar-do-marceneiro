@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ferragens e acessórios para marcenaria. Pix 10% OFF. Entrega em até 24h SP-Capital. Pedidos pelo WhatsApp.">
+  <title>Lar do Marceneiro — Ferragens &amp; Acessórios</title>
+  <script>
+    const _t = localStorage.getItem('tema') || 'light';
+    document.documentElement.setAttribute('data-theme', _t);
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <div class="logo-wrap">
+      <img src="logo.png" alt="Lar do Marceneiro" class="logo-img">
+    </div>
+    <div class="navbar-actions">
+      <button class="nav-cart-btn" id="nav-cart-btn" onclick="abrirCarrinho()" style="display:none" aria-label="Ver carrinho">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        <span id="nav-cart-badge">0</span>
+      </button>
+      <button id="theme-toggle" aria-label="Alternar tema" onclick="alternarTema()">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </div>
+  </nav>
+  <div class="header-banners">
+    <span class="banner-pill">✅ PIX 10% OFF</span>
+    <span class="banner-pill">🚚 Entrega até 24h SP-Capital</span>
+    <span class="banner-pill">💬 Pedidos via WhatsApp</span>
+  </div>
+</header>
+
+<div class="busca-wrap">
+  <div class="busca-inner">
+    <svg class="busca-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input id="busca" type="search" placeholder="Buscar ferragem..." autocomplete="off">
+  </div>
+</div>
+
+<div id="categorias"></div>
+
+<section id="secao-destaques" style="display:none">
+  <h2 class="secao-titulo">⭐ Destaques</h2>
+  <div id="destaques-scroll"></div>
+</section>
+
+<main id="grid">
+  <p class="vazio">Carregando produtos...</p>
+</main>
+
+<button id="fab-carrinho" onclick="abrirCarrinho()" style="display:none" aria-label="Ver carrinho">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+  </svg>
+  <span id="fab-badge">0</span>
+</button>
+
+<div id="overlay"></div>
+
+<div id="popup-produto">
+  <div class="popup-handle"></div>
+  <div class="popup-topo">
+    <img id="popup-img" src="" alt="">
+    <div class="popup-info">
+      <p id="popup-nome"></p>
+      <p id="popup-preco"></p>
+    </div>
+  </div>
+  <div class="popup-qtde-wrap">
+    <span class="popup-qtde-label">Quantidade</span>
+    <div class="popup-qtde-ctrl">
+      <button onclick="popupDelta(-1)">−</button>
+      <span id="popup-qtde">1</span>
+      <button onclick="popupDelta(+1)">+</button>
+    </div>
+  </div>
+  <button class="popup-btn-carrinho" onclick="popupConfirmar('carrinho')">Ir para o carrinho</button>
+  <button class="popup-btn-continuar" onclick="popupConfirmar('continuar')">Continuar comprando</button>
+</div>
+
+<aside id="painel-carrinho">
+  <div class="painel-header">
+    <h2>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;vertical-align:middle;margin-right:6px">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>Carrinho
+    </h2>
+    <button class="fechar-painel" onclick="fecharCarrinho()">✕</button>
+  </div>
+  <div id="carrinho-lista"></div>
+  <div id="carrinho-rodape"></div>
+</aside>
+
+<script src="app.js"></script>
+</body>
+</html>
